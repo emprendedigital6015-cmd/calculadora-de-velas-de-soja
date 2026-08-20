@@ -36,6 +36,8 @@
 
 *{ box-sizing: border-box; }
 
+[hidden]{ display: none !important; }
+
 html, body{
   margin:0; padding:0;
   height:100%;
@@ -150,7 +152,42 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
 .screen-content{
   flex:1;
   padding: 8px 20px 24px;
+  display: flex;
+  flex-direction: column;
 }
+
+/* ===================== STEP VISUAL (llena el espacio, refuerza marca) ===================== */
+.step-visual{
+  flex: 1;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  gap: 16px;
+  min-height: 100px;
+  padding: 24px 0;
+}
+.step-visual-blob{
+  width: 148px; height: 148px;
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  position: relative;
+}
+.step-visual-blob::before{
+  content:'';
+  position:absolute; inset:0;
+  border-radius:50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.5), transparent 60%);
+}
+.step-visual-blob svg{ width: 62px; height:62px; position:relative; z-index:1; }
+.step-visual-caption{
+  font-size: 13.5px;
+  color: var(--texto-secundario);
+  text-align:center;
+  max-width: 240px;
+  line-height: 1.5;
+}
+.step-visual-caption strong{ color: var(--pizarra); }
 
 .screen-footer{
   padding: 14px 20px calc(20px + var(--safe-bottom));
@@ -174,9 +211,9 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
   gap: 4px;
 }
 .home-icon{
-  width: 76px; height: 76px;
-  margin-bottom: 6px;
-  filter: drop-shadow(0 6px 14px rgba(43,58,66,0.15));
+  width: 108px; height: 108px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 10px 20px rgba(43,58,66,0.16));
 }
 .home-icon svg{ width:100%; height:100%; }
 
@@ -232,6 +269,23 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
   color: var(--pizarra);
   margin-bottom: 12px;
 }
+.question-icon{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.question-icon-badge{
+  flex: 0 0 40px;
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: var(--shadow-card);
+}
+.question-icon-badge svg{ width: 20px; height: 20px; }
+.question-icon-badge-terracota{ background: var(--terracota); }
+.question-icon-badge-oliva{ background: var(--oliva); }
+.question-icon-badge-pizarra{ background: var(--pizarra); }
+.question-icon-badge-oro{ background: var(--oro); }
 .helper-text{
   font-size: 14.5px;
   line-height: 1.5;
@@ -559,39 +613,58 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
 .margin-card-row span:last-child{ font-weight: 700; color: var(--pizarra); }
 .margin-card-row-highlight span:last-child{ color: var(--oliva); }
 
-/* ===================== FINAL ===================== */
-.final-badge{ font-size: 44px; text-align:center; margin: 10px 0 6px; }
+/* ===================== FINAL (ticket artesanal) ===================== */
+.final-seal{ width: 84px; height: 84px; margin: 6px auto 14px; filter: drop-shadow(0 8px 18px rgba(120,128,92,0.4)); }
+.final-seal svg{ width:100%; height:100%; }
 .final-title{ text-align:center; }
 .screen[data-screen="final"] .helper-text{ text-align:center; }
 
-.final-summary-card{
-  background: var(--pizarra);
+.final-ticket{
+  position: relative;
+  background: var(--blanco);
   border-radius: var(--radius-lg);
-  padding: 20px;
-  text-align:center;
-  margin: 18px 0;
+  padding: 22px 20px 18px;
+  margin-top: 20px;
+  box-shadow: var(--shadow-lift);
 }
-.final-summary-title{ font-size: 12.5px; color: var(--oro-suave); text-transform: uppercase; font-weight:700; letter-spacing:.04em; margin:0 0 6px; }
-.final-summary-big{ font-family: var(--font-display); font-size: 28px; color: var(--crema); margin:0; font-weight:600; }
+.final-ticket-perf{
+  position:absolute;
+  left:0; right:0;
+  height: 14px;
+  background-image: radial-gradient(circle, var(--crema) 5px, transparent 5.5px);
+  background-size: 20px 14px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.final-ticket-perf-top{ top: -7px; }
+.final-ticket-perf-bottom{ bottom: -7px; }
+
+.final-ticket-divider{
+  border-top: 1.5px dashed var(--crema-2);
+  margin: 16px 0;
+}
+
+.final-summary-title{ font-size: 12.5px; color: var(--texto-secundario); text-transform: uppercase; font-weight:700; letter-spacing:.04em; margin:0 0 6px; text-align:center; }
+.final-summary-big{ font-family: var(--font-display); font-size: 26px; color: var(--pizarra); margin:0; font-weight:600; text-align:center; }
+
+.section-subtitle-onticket{ margin: 0 0 10px; text-align:left; }
 
 .final-need-list{ display:flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
 .final-need-row{
   display:flex; justify-content: space-between;
-  background: var(--blanco);
+  background: var(--crema);
   border-radius: var(--radius-sm);
   padding: 11px 14px;
   font-size: 14px;
-  box-shadow: var(--shadow-card);
 }
 .final-need-row span:first-child{ color: var(--texto-secundario); }
 .final-need-row span:last-child{ font-weight:700; color: var(--pizarra); }
 
-.final-money-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.final-money-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
 .final-money-card{
-  background: var(--blanco);
+  background: var(--crema);
   border-radius: var(--radius-lg);
   padding: 16px;
-  box-shadow: var(--shadow-card);
   text-align:center;
 }
 .final-money-card-accent{ background: var(--terracota); }
@@ -601,6 +674,7 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
 .final-money-value{ font-family: var(--font-display); font-size: 22px; font-weight:600; color: var(--pizarra); }
 
 /* ===================== MODAL PRECIOS ===================== */
+.modal-overlay[hidden]{ display: none !important; }
 .modal-overlay{
   position: fixed; inset:0;
   background: rgba(43,58,66,0.45);

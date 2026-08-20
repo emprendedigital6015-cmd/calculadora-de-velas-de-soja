@@ -476,7 +476,7 @@
       {
         title: 'Cera BPF',
         need: 'Necesitás ' + fmtKg(r.ceraG),
-        action: 'Comprá ' + r.paquetesCera + ' ' + (r.paquetesCera === 1 ? r.presCera.label : r.paquetesCera + ' paquetes de 1 kg')
+        action: 'Comprá ' + r.paquetesCera + ' ' + (r.paquetesCera === 1 ? r.presCera.label : 'paquetes de 1 kg')
       },
       {
         title: 'Endurecedor ' + (state.endurecedorTipo === 'animal' ? 'animal' : 'vegetal'),
@@ -630,7 +630,7 @@
 
     $('#finalCosto').textContent = fmtMoney(r.costoTotal);
     const precioUnitario = r.costoUnitario * (1 + state.margenSeleccionado);
-    $('#finalPrecio').textContent = fmtMoney(precioUnitario) + ' / vela';
+    $('#finalPrecio').textContent = fmtMoney(precioUnitario);
   }
 
   $('#btnNuevoCalculo').addEventListener('click', () => {
